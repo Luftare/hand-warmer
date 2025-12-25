@@ -222,12 +222,17 @@ class HandWarmerApp {
     const potentiometer = document.getElementById("potentiometer");
 
     // Calculate initial angle from power
-    // 0% = 225 degrees (bottom left), 100% = 225 + 270 = 495 degrees (top right, clockwise)
+    // 10% = 225 degrees (bottom left), 100% = 225 + 270 = 495 degrees (top right, clockwise)
     // Range: 225 to 495 degrees (270 degree range)
+    // Power range: 10% to 100%
     const minAngle = 225;
     const maxAngle = 495;
+    const minPower = 10;
+    const maxPower = 100;
+    // Map power (10-100%) to angle (225-495°)
     this.potentiometerAngle =
-      minAngle + (this.power / 100) * (maxAngle - minAngle);
+      minAngle +
+      ((this.power - minPower) / (maxPower - minPower)) * (maxAngle - minAngle);
     this.updatePotentiometerRotation();
 
     const handleStart = (e) => {
@@ -250,9 +255,13 @@ class HandWarmerApp {
       );
 
       this.potentiometerAngle = newAngle;
-      // Convert angle back to power percentage
+      // Convert angle back to power percentage (10-100% range)
+      const minPower = 10;
+      const maxPower = 100;
       this.power = Math.round(
-        ((newAngle - minAngle) / (maxAngle - minAngle)) * 100
+        minPower +
+          ((newAngle - minAngle) / (maxAngle - minAngle)) *
+            (maxPower - minPower)
       );
       this.updatePotentiometerRotation();
       this.updatePowerDisplay();
