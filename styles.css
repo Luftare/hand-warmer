@@ -1,290 +1,291 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --bg-color: #1a1a1a;
-    --surface-color: #2a2a2a;
-    --text-color: #e0e0e0;
-    --accent-color: #808080;
-    --active-color: #ffffff;
-    --border-color: #404040;
+  --bg-color: #1a1a1a;
+  --surface-color: #2a2a2a;
+  --text-color: #e0e0e0;
+  --accent-color: #808080;
+  --active-color: #ffffff;
+  --border-color: #404040;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: var(--bg-color);
-    color: var(--text-color);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  line-height: 1.6;
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 2rem;
 }
 
 main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
 }
 
 /* Potentiometer Knob */
 .potentiometer-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
 }
 
 .potentiometer {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .potentiometer-knob {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: var(--surface-color);
-    border: 4px solid var(--border-color);
-    position: relative;
-    cursor: grab;
-    user-select: none;
-    touch-action: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.1s ease;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--surface-color);
+  border: 4px solid var(--border-color);
+  position: relative;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease;
 }
 
 .potentiometer-knob:active {
-    cursor: grabbing;
+  cursor: grabbing;
 }
 
 .knob-indicator {
-    width: 8px;
-    height: 8px;
-    background: var(--active-color);
-    border-radius: 50%;
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: background 0.2s ease;
+  width: 8px;
+  height: 8px;
+  background: var(--active-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: background 0.2s ease;
 }
 
 .potentiometer-label {
-    margin-top: 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-color);
-    text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: center;
 }
 
 /* Slide Toggle */
 .slide-toggle-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .slide-toggle {
-    width: 100%;
-    max-width: 400px;
-    height: 80px;
-    position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 80px;
+  position: relative;
 }
 
 .slide-track {
-    width: 100%;
-    height: 100%;
-    background: var(--surface-color);
-    border: 2px solid var(--border-color);
-    border-radius: 40px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    user-select: none;
-    touch-action: none;
+  width: 100%;
+  height: 100%;
+  background: var(--surface-color);
+  border: 2px solid var(--border-color);
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
 }
 
 .slide-handle {
-    position: absolute;
-    left: 4px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 72px;
-    height: 72px;
-    background: var(--text-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: left 0.2s ease, background 0.2s ease;
-    z-index: 2;
-    cursor: grab;
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 72px;
+  height: 72px;
+  background: var(--text-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.2s ease, background 0.2s ease;
+  z-index: 2;
+  cursor: grab;
 }
 
 .slide-handle:active {
-    cursor: grabbing;
+  cursor: grabbing;
 }
 
 .slide-handle i {
-    color: var(--bg-color);
-    font-size: 1.2rem;
+  color: var(--bg-color);
+  font-size: 1.2rem;
 }
 
 .slide-track.active .slide-handle {
-    background: var(--active-color);
-    left: calc(100% - 76px);
+  background: var(--active-color);
+  left: calc(100% - 76px);
 }
 
 .slide-text {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
-    color: var(--accent-color);
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding-left: 90px;
-    padding-right: 20px;
-    transition: color 0.2s ease, padding-left 0.2s ease;
-    pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: var(--accent-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding-left: 90px;
+  padding-right: 20px;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+  pointer-events: none;
 }
 
 .slide-track.active .slide-text {
-    color: var(--text-color);
-    padding-left: 20px;
-    padding-right: 90px;
+  color: var(--text-color);
+  padding-left: 20px;
+  padding-right: 90px;
 }
 
 /* Hidden GPU Canvas */
 .gpu-canvas {
-    position: fixed;
-    top: -9999px;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-    opacity: 0.01;
-    pointer-events: none;
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0.01;
+  pointer-events: none;
 }
 
 /* Hidden Mechanism Selector */
 .mechanism-select {
-    display: none;
+  display: none;
 }
 
 /* Disclaimer */
 .disclaimer {
-    margin-top: auto;
-    padding: 1rem;
-    background: var(--surface-color);
-    border-top: 2px solid var(--border-color);
-    border-radius: 8px 8px 0 0;
+  margin-top: auto;
+  padding: 1rem;
+  background: var(--surface-color);
+  border-top: 2px solid var(--border-color);
+  border-radius: 8px 8px 0 0;
 }
 
 .disclaimer-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 .disclaimer-title {
-    font-weight: 600;
-    color: var(--text-color);
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 .disclaimer-more {
-    color: var(--accent-color);
-    font-size: 0.9rem;
-    text-decoration: underline;
+  color: var(--accent-color);
+  font-size: 0.9rem;
+  text-decoration: underline;
 }
 
 .disclaimer-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    margin-top: 0.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  margin-top: 0.5rem;
 }
 
 .disclaimer-content.expanded {
-    max-height: 200px;
+  max-height: 200px;
 }
 
 .disclaimer-content p {
-    color: var(--text-color);
-    font-size: 0.9rem;
-    line-height: 1.6;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 /* Mobile optimizations */
 @media (max-width: 480px) {
-    .container {
-        gap: 1.5rem;
-    }
+  .container {
+    gap: 1.5rem;
+  }
 
-    main {
-        gap: 2rem;
-        padding: 1rem;
-    }
+  main {
+    gap: 2rem;
+    padding: 1rem;
+  }
 
-    .potentiometer {
-        width: 180px;
-        height: 180px;
-    }
+  .potentiometer {
+    width: 180px;
+    height: 180px;
+  }
 
-    .potentiometer-knob {
-        width: 100px;
-        height: 100px;
-    }
+  .potentiometer-knob {
+    width: 100px;
+    height: 100px;
+  }
 
-    .slide-toggle {
-        height: 70px;
-    }
+  .slide-toggle {
+    height: 70px;
+  }
 
-    .slide-handle {
-        width: 62px;
-        height: 62px;
-    }
+  .slide-handle {
+    width: 62px;
+    height: 62px;
+  }
 
-    .slide-track.active .slide-handle {
-        left: calc(100% - 66px);
-    }
+  .slide-track.active .slide-handle {
+    left: calc(100% - 66px);
+  }
 
-    .slide-text {
-        font-size: 1rem;
-        padding-left: 80px;
-    }
+  .slide-text {
+    font-size: 1rem;
+    padding-left: 80px;
+  }
 
-    .slide-track.active .slide-text {
-        padding-right: 80px;
-    }
+  .slide-track.active .slide-text {
+    padding-right: 80px;
+  }
 }
