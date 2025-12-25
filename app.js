@@ -213,14 +213,6 @@ class HandWarmerApp {
     // Initialize slide toggle
     this.setupSlideToggle();
 
-    // Disclaimer toggle
-    const disclaimerToggle = document.getElementById("disclaimerToggle");
-    const disclaimerContent = document.getElementById("disclaimerContent");
-
-    disclaimerToggle.addEventListener("click", () => {
-      disclaimerContent.classList.toggle("expanded");
-    });
-
     // Initialize power display
     this.updatePowerDisplay();
   }

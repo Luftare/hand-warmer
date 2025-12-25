@@ -255,49 +255,18 @@ main {
   display: none;
 }
 
-/* Disclaimer */
-.disclaimer {
+/* Footer Text */
+.footer-text {
   margin-top: auto;
-  padding: 1rem;
-  background: var(--surface-color);
-  border-top: 2px solid var(--border-color);
-  border-radius: 8px 8px 0 0;
+  padding: 1.5rem 1rem;
+  text-align: center;
 }
 
-.disclaimer-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-}
-
-.disclaimer-title {
-  font-weight: 600;
-  color: var(--text-color);
-}
-
-.disclaimer-more {
-  color: var(--accent-color);
-  font-size: 0.9rem;
-  text-decoration: underline;
-}
-
-.disclaimer-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  margin-top: 0.5rem;
-}
-
-.disclaimer-content.expanded {
-  max-height: 200px;
-}
-
-.disclaimer-content p {
-  color: var(--text-color);
+.footer-text p {
+  color: #808080;
   font-size: 0.9rem;
   line-height: 1.6;
+  margin: 0;
 }
 
 /* Mobile optimizations */
