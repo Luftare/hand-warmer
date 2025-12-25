@@ -1,0 +1,382 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #1a1a1a;
+    --surface-color: #2a2a2a;
+    --text-color: #e0e0e0;
+    --accent-color: #808080;
+    --active-color: #ffffff;
+    --border-color: #404040;
+    --radiator-color: #4a4a4a;
+    --radiator-active: #6a6a6a;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    gap: 2rem;
+}
+
+header {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--text-color);
+}
+
+header h1 i {
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* Radiator Visualization */
+.radiator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 200px;
+}
+
+.radiator {
+    position: relative;
+    width: 200px;
+    height: 300px;
+}
+
+.radiator-body {
+    width: 100%;
+    height: 100%;
+    background: var(--radiator-color);
+    border-radius: 8px;
+    position: relative;
+    border: 2px solid var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+.radiator.active {
+    background: var(--radiator-active);
+}
+
+.radiator-fins {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    height: 100%;
+    justify-content: space-around;
+}
+
+.fin {
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
+.heatwaves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.heatwaves.active {
+    opacity: 1;
+}
+
+.heatwaves::before,
+.heatwaves::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.heatwaves::after {
+    animation-delay: 1s;
+    border-width: 3px;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.control-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.control-label i {
+    color: var(--accent-color);
+    width: 20px;
+}
+
+.power-value {
+    margin-left: auto;
+    font-weight: 600;
+    color: var(--active-color);
+}
+
+/* Toggle Switch */
+.toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle-slider {
+    position: relative;
+    width: 60px;
+    height: 32px;
+    background: var(--border-color);
+    border-radius: 16px;
+    transition: background 0.3s ease;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background: var(--text-color);
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.3s ease;
+}
+
+.toggle-input:checked + .toggle-label .toggle-slider {
+    background: var(--active-color);
+}
+
+.toggle-input:checked + .toggle-label .toggle-slider::before {
+    transform: translateX(28px);
+}
+
+.toggle-text {
+    font-size: 1rem;
+    min-width: 40px;
+}
+
+/* Power Slider - Large knob for cold hands */
+.power-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+.power-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 32px;
+    height: 32px;
+    background: var(--active-color);
+    border-radius: 50%;
+    cursor: grab;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease;
+}
+
+.power-slider::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+.power-slider::-moz-range-thumb {
+    width: 32px;
+    height: 32px;
+    background: var(--active-color);
+    border-radius: 50%;
+    border: none;
+    cursor: grab;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease;
+}
+
+.power-slider::-moz-range-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+/* Mechanism Selector */
+.mechanism-select {
+    width: 100%;
+    padding: 1rem;
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.mechanism-select:hover,
+.mechanism-select:focus {
+    border-color: var(--accent-color);
+}
+
+.mechanism-select option {
+    background: var(--surface-color);
+    color: var(--text-color);
+}
+
+/* Hidden GPU Canvas */
+.gpu-canvas {
+    position: fixed;
+    top: -9999px;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0.01;
+    pointer-events: none;
+}
+
+/* Disclaimer */
+.disclaimer {
+    margin-top: auto;
+    padding: 1rem;
+    background: var(--surface-color);
+    border-top: 2px solid var(--border-color);
+    border-radius: 8px 8px 0 0;
+}
+
+.disclaimer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.disclaimer-title {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.disclaimer-more {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.disclaimer-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.disclaimer-content.expanded {
+    max-height: 200px;
+}
+
+.disclaimer-content p {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+    .container {
+        gap: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .radiator {
+        width: 150px;
+        height: 225px;
+    }
+
+    .controls {
+        gap: 1.5rem;
+    }
+}
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Hand Warmer PWA - Generate device heat to warm your hands"
+    />
+    <meta name="theme-color" content="#2a2a2a" />
+    <title>Hand Warmer</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1><i class="fas fa-fire"></i> Hand Warmer</h1>
+      </header>
+
+      <main>
+        <!-- Radiator Visualization -->
+        <div class="radiator-container">
+          <div class="radiator" id="radiator">
+            <div class="radiator-body">
+              <div class="radiator-fins">
+                <div class="fin"></div>
+                <div class="fin"></div>
+                <div class="fin"></div>
+                <div class="fin"></div>
+                <div class="fin"></div>
+              </div>
+            </div>
+            <div class="heatwaves" id="heatwaves"></div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+          <!-- On/Off Toggle -->
+          <div class="control-group">
+            <label for="toggle" class="control-label">
+              <i class="fas fa-power-off"></i> Power
+            </label>
+            <div class="toggle-container">
+              <input type="checkbox" id="toggle" class="toggle-input" />
+              <label for="toggle" class="toggle-label">
+                <span class="toggle-slider"></span>
+                <span class="toggle-text">Off</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Heat Power Slider -->
+          <div class="control-group">
+            <label for="power" class="control-label">
+              <i class="fas fa-sliders-h"></i> Heat Power
+              <span class="power-value" id="powerValue">30%</span>
+            </label>
+            <input
+              type="range"
+              id="power"
+              class="power-slider"
+              min="0"
+              max="100"
+              value="30"
+            />
+          </div>
+
+          <!-- Heating Mechanism Selector -->
+          <div class="control-group">
+            <label for="mechanism" class="control-label">
+              <i class="fas fa-cog"></i> Heating Mechanism
+            </label>
+            <select id="mechanism" class="mechanism-select">
+              <option value="both">CPU & GPU</option>
+              <option value="cpu">CPU Only</option>
+              <option value="gpu">GPU Only</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Hidden WebGL Canvas for GPU Heating -->
+        <canvas id="gpuCanvas" class="gpu-canvas"></canvas>
+      </main>
+
+      <!-- Disclaimer -->
+      <footer class="disclaimer">
+        <div class="disclaimer-header" id="disclaimerToggle">
+          <span class="disclaimer-title">⚠️ Warning</span>
+          <span class="disclaimer-more" id="disclaimerMore">more</span>
+        </div>
+        <div class="disclaimer-content" id="disclaimerContent">
+          <p>
+            This app intentionally increases device workload to generate heat.
+            Prolonged use may cause excessive heat, rapid battery drain, or
+            device throttling. Use at your own risk. No liability of any kind.
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
