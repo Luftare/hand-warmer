@@ -18,71 +18,35 @@
   </head>
   <body>
     <div class="container">
-      <header>
-        <h1><i class="fas fa-fire"></i> Hand Warmer</h1>
-      </header>
-
       <main>
-        <!-- Radiator Visualization -->
-        <div class="radiator-container">
-          <div class="radiator" id="radiator">
-            <div class="radiator-body">
-              <div class="radiator-fins">
-                <div class="fin"></div>
-                <div class="fin"></div>
-                <div class="fin"></div>
-                <div class="fin"></div>
-                <div class="fin"></div>
+        <!-- Potentiometer Knob -->
+        <div class="potentiometer-container">
+          <div class="potentiometer" id="potentiometer">
+            <div class="potentiometer-knob" id="potentiometerKnob">
+              <div class="knob-indicator"></div>
+            </div>
+            <div class="potentiometer-label">
+              <span id="powerValue">30%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide Toggle -->
+        <div class="slide-toggle-container">
+          <div class="slide-toggle" id="slideToggle">
+            <div class="slide-track">
+              <div class="slide-handle" id="slideHandle">
+                <i class="fas fa-chevron-right"></i>
               </div>
+              <span class="slide-text" id="slideText">Slide to activate</span>
             </div>
-            <div class="heatwaves" id="heatwaves"></div>
           </div>
         </div>
 
-        <!-- Controls -->
-        <div class="controls">
-          <!-- On/Off Toggle -->
-          <div class="control-group">
-            <label for="toggle" class="control-label">
-              <i class="fas fa-power-off"></i> Power
-            </label>
-            <div class="toggle-container">
-              <input type="checkbox" id="toggle" class="toggle-input" />
-              <label for="toggle" class="toggle-label">
-                <span class="toggle-slider"></span>
-                <span class="toggle-text">Off</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Heat Power Slider -->
-          <div class="control-group">
-            <label for="power" class="control-label">
-              <i class="fas fa-sliders-h"></i> Heat Power
-              <span class="power-value" id="powerValue">30%</span>
-            </label>
-            <input
-              type="range"
-              id="power"
-              class="power-slider"
-              min="0"
-              max="100"
-              value="30"
-            />
-          </div>
-
-          <!-- Heating Mechanism Selector -->
-          <div class="control-group">
-            <label for="mechanism" class="control-label">
-              <i class="fas fa-cog"></i> Heating Mechanism
-            </label>
-            <select id="mechanism" class="mechanism-select">
-              <option value="both">CPU & GPU</option>
-              <option value="cpu">CPU Only</option>
-              <option value="gpu">GPU Only</option>
-            </select>
-          </div>
-        </div>
+        <!-- Hidden Heating Mechanism Selector (defaults to both) -->
+        <select id="mechanism" class="mechanism-select" style="display: none">
+          <option value="both" selected>CPU & GPU</option>
+        </select>
 
         <!-- Hidden WebGL Canvas for GPU Heating -->
         <canvas id="gpuCanvas" class="gpu-canvas"></canvas>

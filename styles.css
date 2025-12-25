@@ -11,8 +11,6 @@
     --accent-color: #808080;
     --active-color: #ffffff;
     --border-color: #404040;
-    --radiator-color: #4a4a4a;
-    --radiator-active: #6a6a6a;
 }
 
 body {
@@ -36,272 +34,154 @@ body {
     gap: 2rem;
 }
 
-header {
-    text-align: center;
-    padding: 1.5rem 0;
-}
-
-header h1 {
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--text-color);
-}
-
-header h1 i {
-    color: var(--accent-color);
-    margin-right: 0.5rem;
-}
-
 main {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
 }
 
-/* Radiator Visualization */
-.radiator-container {
+/* Potentiometer Knob */
+.potentiometer-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     padding: 2rem;
-    min-height: 200px;
 }
 
-.radiator {
+.potentiometer {
     position: relative;
     width: 200px;
-    height: 300px;
-}
-
-.radiator-body {
-    width: 100%;
-    height: 100%;
-    background: var(--radiator-color);
-    border-radius: 8px;
-    position: relative;
-    border: 2px solid var(--border-color);
-    transition: background-color 0.3s ease;
-}
-
-.radiator.active {
-    background: var(--radiator-active);
-}
-
-.radiator-fins {
+    height: 200px;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
-    height: 100%;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
 }
 
-.fin {
-    width: 100%;
-    height: 8px;
-    background: var(--border-color);
-    border-radius: 2px;
-}
-
-.heatwaves {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.heatwaves.active {
-    opacity: 1;
-}
-
-.heatwaves::before,
-.heatwaves::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    border: 2px solid var(--accent-color);
+.potentiometer-knob {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    opacity: 0.3;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-.heatwaves::after {
-    animation-delay: 1s;
-    border-width: 3px;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.3;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0;
-    }
-}
-
-/* Controls */
-.controls {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 0 1rem;
-}
-
-.control-group {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.control-label {
+    background: var(--surface-color);
+    border: 4px solid var(--border-color);
+    position: relative;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-    color: var(--text-color);
+    justify-content: center;
+    transition: transform 0.1s ease;
 }
 
-.control-label i {
-    color: var(--accent-color);
-    width: 20px;
+.potentiometer-knob:active {
+    cursor: grabbing;
 }
 
-.power-value {
-    margin-left: auto;
+.knob-indicator {
+    width: 8px;
+    height: 8px;
+    background: var(--active-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: background 0.2s ease;
+}
+
+.potentiometer-label {
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: var(--active-color);
+    color: var(--text-color);
+    text-align: center;
 }
 
-/* Toggle Switch */
-.toggle-container {
+/* Slide Toggle */
+.slide-toggle-container {
+    width: 100%;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
 
-.toggle-input {
-    display: none;
+.slide-toggle {
+    width: 100%;
+    max-width: 400px;
+    height: 80px;
+    position: relative;
 }
 
-.toggle-label {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.slide-track {
+    width: 100%;
+    height: 100%;
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
     cursor: pointer;
     user-select: none;
+    touch-action: none;
 }
 
-.toggle-slider {
-    position: relative;
-    width: 60px;
-    height: 32px;
-    background: var(--border-color);
-    border-radius: 16px;
-    transition: background 0.3s ease;
-}
-
-.toggle-slider::before {
-    content: '';
+.slide-handle {
     position: absolute;
-    width: 26px;
-    height: 26px;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 72px;
+    height: 72px;
     background: var(--text-color);
     border-radius: 50%;
-    top: 3px;
-    left: 3px;
-    transition: transform 0.3s ease;
-}
-
-.toggle-input:checked + .toggle-label .toggle-slider {
-    background: var(--active-color);
-}
-
-.toggle-input:checked + .toggle-label .toggle-slider::before {
-    transform: translateX(28px);
-}
-
-.toggle-text {
-    font-size: 1rem;
-    min-width: 40px;
-}
-
-/* Power Slider - Large knob for cold hands */
-.power-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 8px;
-    background: var(--border-color);
-    border-radius: 4px;
-    outline: none;
-    cursor: pointer;
-}
-
-.power-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 32px;
-    height: 32px;
-    background: var(--active-color);
-    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.2s ease, background 0.2s ease;
+    z-index: 2;
     cursor: grab;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.1s ease;
 }
 
-.power-slider::-webkit-slider-thumb:active {
+.slide-handle:active {
     cursor: grabbing;
-    transform: scale(1.1);
 }
 
-.power-slider::-moz-range-thumb {
-    width: 32px;
-    height: 32px;
+.slide-handle i {
+    color: var(--bg-color);
+    font-size: 1.2rem;
+}
+
+.slide-track.active .slide-handle {
     background: var(--active-color);
-    border-radius: 50%;
-    border: none;
-    cursor: grab;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.1s ease;
+    left: calc(100% - 76px);
 }
 
-.power-slider::-moz-range-thumb:active {
-    cursor: grabbing;
-    transform: scale(1.1);
+.slide-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding-left: 90px;
+    padding-right: 20px;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    pointer-events: none;
 }
 
-/* Mechanism Selector */
-.mechanism-select {
-    width: 100%;
-    padding: 1rem;
-    background: var(--surface-color);
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
+.slide-track.active .slide-text {
     color: var(--text-color);
-    font-size: 1rem;
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-.mechanism-select:hover,
-.mechanism-select:focus {
-    border-color: var(--accent-color);
-}
-
-.mechanism-select option {
-    background: var(--surface-color);
-    color: var(--text-color);
+    padding-left: 20px;
+    padding-right: 90px;
 }
 
 /* Hidden GPU Canvas */
@@ -313,6 +193,11 @@ main {
     height: 1px;
     opacity: 0.01;
     pointer-events: none;
+}
+
+/* Hidden Mechanism Selector */
+.mechanism-select {
+    display: none;
 }
 
 /* Disclaimer */
@@ -366,17 +251,40 @@ main {
         gap: 1.5rem;
     }
 
-    header h1 {
-        font-size: 1.5rem;
+    main {
+        gap: 2rem;
+        padding: 1rem;
     }
 
-    .radiator {
-        width: 150px;
-        height: 225px;
+    .potentiometer {
+        width: 180px;
+        height: 180px;
     }
 
-    .controls {
-        gap: 1.5rem;
+    .potentiometer-knob {
+        width: 100px;
+        height: 100px;
+    }
+
+    .slide-toggle {
+        height: 70px;
+    }
+
+    .slide-handle {
+        width: 62px;
+        height: 62px;
+    }
+
+    .slide-track.active .slide-handle {
+        left: calc(100% - 66px);
+    }
+
+    .slide-text {
+        font-size: 1rem;
+        padding-left: 80px;
+    }
+
+    .slide-track.active .slide-text {
+        padding-right: 80px;
     }
 }
-
